@@ -1,0 +1,1735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Creative Academy - Master AI Art & Music Creation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .cta-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #667eea;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255,255,255,0.3);
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #667eea;
+        }
+
+        /* Floating Elements */
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .floating-card {
+            position: absolute;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-card:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-card:nth-child(2) {
+            top: 60%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+
+        .floating-card:nth-child(3) {
+            bottom: 20%;
+            left: 15%;
+            animation-delay: 4s;
+        }
+
+        /* Course Sections */
+        .courses {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .course-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .course-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .course-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-right: 1rem;
+        }
+
+        .leonardo-icon {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+            color: white;
+        }
+
+        .suno-icon {
+            background: linear-gradient(45deg, #4ecdc4, #44a08d);
+            color: white;
+        }
+
+        .course-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .course-subtitle {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .course-features {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .course-features li {
+            margin: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .course-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #4ecdc4;
+            font-weight: bold;
+        }
+
+        /* Interactive Features */
+        .interactive-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1rem;
+        }
+
+        /* Live Sessions */
+        .live-sessions {
+            padding: 5rem 0;
+            background: #f8f9fa;
+        }
+
+        .session-calendar {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-top: 2rem;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #eee;
+        }
+
+        .session-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            margin: 1rem 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 10px;
+        }
+
+        .session-info h4 {
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .session-time {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .join-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .join-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #4ecdc4;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin: 0.5rem 0;
+        }
+
+        .footer-section ul li a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: white;
+        }
+
+        /* Course Explorer Modal */
+        .course-explorer-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2000;
+            display: none;
+        }
+
+        .modal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            width: 95%;
+            max-width: 1200px;
+            max-height: 90vh;
+            overflow-y: auto;
+            border-radius: 20px;
+            position: relative;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem;
+            border-bottom: 2px solid #eee;
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 10;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #666;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .close-btn:hover {
+            background: #f0f0f0;
+        }
+
+        .course-explorer-tabs {
+            display: flex;
+            background: #f8f9fa;
+            margin: 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 1rem 2rem;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #666;
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active {
+            background: white;
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .tab-content {
+            padding: 2rem;
+        }
+
+        .tab-panel {
+            display: none;
+        }
+
+        .tab-panel.active {
+            display: block;
+        }
+
+        .detailed-courses {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .detailed-course-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 20px;
+            padding: 2rem;
+            position: relative;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .bundle-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .course-badge {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: #ff6b6b;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .best-value {
+            background: #4ecdc4;
+        }
+
+        .course-header-detailed {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .course-icon-large {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            flex-shrink: 0;
+        }
+
+        .bundle-icon {
+            background: linear-gradient(45deg, #ffd700, #ffed4a);
+            color: #333;
+        }
+
+        .course-title-section {
+            flex: 1;
+        }
+
+        .course-title-section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .course-meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .bundle-card .course-meta {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .course-price {
+            text-align: right;
+        }
+
+        .price {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #4ecdc4;
+        }
+
+        .bundle-card .price {
+            color: #ffd700;
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 1.2rem;
+            display: block;
+        }
+
+        .savings {
+            color: #4ecdc4;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .course-curriculum {
+            margin: 2rem 0;
+        }
+
+        .curriculum-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .module {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .bundle-card .module {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .module h5 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .bundle-card .module h5 {
+            color: #ffd700;
+        }
+
+        .module ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .module ul li {
+            margin: 0.5rem 0;
+            padding-left: 1rem;
+            position: relative;
+            font-size: 0.9rem;
+        }
+
+        .module ul li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #4ecdc4;
+        }
+
+        .course-features-detailed {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0.5rem;
+            margin: 2rem 0;
+        }
+
+        .feature {
+            font-size: 0.95rem;
+            color: #333;
+        }
+
+        .bundle-card .feature {
+            color: white;
+        }
+
+        .bundle-benefits {
+            margin: 2rem 0;
+        }
+
+        .benefit-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .benefit {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .enroll-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 1rem;
+            transition: transform 0.3s;
+        }
+
+        .bundle-btn {
+            background: linear-gradient(45deg, #ffd700, #ffed4a);
+            color: #333;
+        }
+
+        .enroll-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .comparison-table {
+            overflow-x: auto;
+        }
+
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .comparison-table th {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 1.5rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #eee;
+            vertical-align: middle;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .assessment-container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .quiz-container {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-top: 2rem;
+        }
+
+        .question {
+            display: none;
+            text-align: left;
+        }
+
+        .question.active {
+            display: block;
+        }
+
+        .question h4 {
+            margin-bottom: 1.5rem;
+            color: #333;
+            font-size: 1.3rem;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .options label {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .options label:hover {
+            border-color: #667eea;
+            background: #f8f9ff;
+        }
+
+        .options input[type="radio"] {
+            margin-right: 1rem;
+            width: 20px;
+            height: 20px;
+        }
+
+        .quiz-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+            gap: 1rem;
+        }
+
+        .prev-btn, .next-btn, .results-btn {
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .prev-btn {
+            background: #f8f9fa;
+            color: #666;
+        }
+
+        .next-btn, .results-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .prev-btn:hover {
+            background: #e9ecef;
+        }
+
+        .next-btn:hover, .results-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .quiz-results {
+            text-align: center;
+            margin-top: 2rem;
+            display: none;
+        }
+
+        .recommendation-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-top: 2rem;
+            text-align: left;
+        }
+
+        .bundle-rec {
+            border: 3px solid #667eea;
+            background: linear-gradient(135deg, #f8f9ff 0%, #e6eeff 100%);
+        }
+
+        .leonardo-rec {
+            border: 3px solid #ff6b6b;
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe6e6 100%);
+        }
+
+        .suno-rec {
+            border: 3px solid #4ecdc4;
+            background: linear-gradient(135deg, #f0fffe 0%, #e6fffc 100%);
+        }
+
+        .recommendation-card h4 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .recommendation-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 1.5rem 0;
+        }
+
+        .recommendation-card ul li {
+            margin: 0.5rem 0;
+            font-weight: 500;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .course-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .floating-card {
+                display: none;
+            }
+
+            .modal-content {
+                width: 98%;
+                max-height: 95vh;
+                margin: 1rem;
+            }
+
+            .modal-header {
+                padding: 1rem;
+            }
+
+            .tab-content {
+                padding: 1rem;
+            }
+
+            .detailed-course-card {
+                padding: 1.5rem;
+            }
+
+            .course-header-detailed {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .course-icon-large {
+                margin: 0 auto;
+            }
+
+            .curriculum-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .course-features-detailed {
+                grid-template-columns: 1fr;
+            }
+
+            .benefit-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .comparison-table {
+                font-size: 0.9rem;
+            }
+
+            .comparison-table th,
+            .comparison-table td {
+                padding: 0.8rem;
+            }
+
+            .course-explorer-tabs {
+                flex-direction: column;
+            }
+
+            .tab-btn {
+                padding: 0.8rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">AI Creative Academy</div>
+            <ul class="nav-links">
+                <li><a href="#courses">Courses</a></li>
+                <li><a href="#interactive">Learn</a></li>
+                <li><a href="#live">Live Sessions</a></li>
+                <li><a href="#community">Community</a></li>
+            </ul>
+            <button class="cta-btn" onclick="showSignup()">Start Learning</button>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="floating-elements">
+            <div class="floating-card">
+                <h4>🎨 Create Stunning Art</h4>
+                <p>Master Leonardo AI</p>
+            </div>
+            <div class="floating-card">
+                <h4>🎵 Compose Music</h4>
+                <p>Learn Suno AI</p>
+            </div>
+            <div class="floating-card">
+                <h4>🚀 Interactive Learning</h4>
+                <p>Hands-on Practice</p>
+            </div>
+        </div>
+        
+        <div class="container hero-content">
+            <h1>Master AI Creative Tools</h1>
+            <p>Learn to create amazing images with Leonardo AI and compose music with Suno AI. Perfect for beginners ready to explore the future of creativity.</p>
+            <div class="hero-buttons">
+                <button class="btn-primary" onclick="showCourseExplorer()">Explore Courses</button>
+                <button class="btn-secondary" onclick="showDemo()">Watch Demo</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="courses" class="courses">
+        <div class="container">
+            <h2 class="section-title">Master Two Powerful AI Tools</h2>
+            
+            <div class="course-grid">
+                <div class="course-card">
+                    <div class="course-header">
+                        <div class="course-icon leonardo-icon">🎨</div>
+                        <div>
+                            <h3 class="course-title">Leonardo AI Mastery</h3>
+                            <p class="course-subtitle">Create stunning images & artwork</p>
+                        </div>
+                    </div>
+                    
+                    <ul class="course-features">
+                        <li>Prompt engineering fundamentals</li>
+                        <li>Style exploration & techniques</li>
+                        <li>Advanced image generation</li>
+                        <li>Commercial use guidelines</li>
+                        <li>Portfolio building tips</li>
+                    </ul>
+                    
+                    <button class="cta-btn" onclick="startCourse('suno')">Start Suno Course</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="interactive" class="interactive-section">
+        <div class="container">
+            <h2 class="section-title">Interactive Learning Experience</h2>
+            <p style="text-align: center; font-size: 1.2rem; opacity: 0.9;">Learn by doing with our hands-on approach designed for beginners</p>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>Step-by-Step Guides</h3>
+                    <p>Follow detailed tutorials that break down complex concepts into easy, digestible steps.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎮</div>
+                    <h3>Practice Playground</h3>
+                    <p>Experiment safely with interactive tools and get instant feedback on your creations.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3>Progress Tracking</h3>
+                    <p>Monitor your learning journey with detailed progress reports and achievement badges.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">💡</div>
+                    <h3>Prompt Templates</h3>
+                    <p>Access our library of proven prompts and templates to jumpstart your creativity.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🤝</div>
+                    <h3>Community Support</h3>
+                    <p>Connect with fellow learners, share your work, and get constructive feedback.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Personalized Path</h3>
+                    <p>Customize your learning experience based on your interests and skill level.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="live" class="live-sessions">
+        <div class="container">
+            <h2 class="section-title">Live Learning Sessions</h2>
+            <p style="text-align: center; font-size: 1.2rem; color: #666; margin-bottom: 2rem;">Join our expert instructors for live workshops and Q&A sessions</p>
+            
+            <div class="session-calendar">
+                <div class="calendar-header">
+                    <h3>Upcoming Sessions</h3>
+                    <button class="cta-btn">View Full Calendar</button>
+                </div>
+                
+                <div class="session-item">
+                    <div class="session-info">
+                        <h4>Leonardo AI Fundamentals Workshop</h4>
+                        <p class="session-time">Tomorrow, 2:00 PM - 3:30 PM IST</p>
+                        <p>Learn the basics of image generation and prompt crafting</p>
+                    </div>
+                    <button class="join-btn" onclick="joinSession('leonardo-fundamentals')">Join Session</button>
+                </div>
+                
+                <div class="session-item">
+                    <div class="session-info">
+                        <h4>Suno Music Creation Masterclass</h4>
+                        <p class="session-time">Thursday, 7:00 PM - 8:30 PM IST</p>
+                        <p>Create your first AI-generated song from scratch</p>
+                    </div>
+                    <button class="join-btn" onclick="joinSession('suno-masterclass')">Join Session</button>
+                </div>
+                
+                <div class="session-item">
+                    <div class="session-info">
+                        <h4>Advanced Prompting Techniques</h4>
+                        <p class="session-time">Saturday, 4:00 PM - 5:00 PM IST</p>
+                        <p>Master advanced techniques for both image and music generation</p>
+                    </div>
+                    <button class="join-btn" onclick="joinSession('advanced-prompting')">Join Session</button>
+                </div>
+                
+                <div class="session-item">
+                    <div class="session-info">
+                        <h4>Student Showcase & Feedback</h4>
+                        <p class="session-time">Sunday, 6:00 PM - 7:00 PM IST</p>
+                        <p>Share your creations and get expert feedback</p>
+                    </div>
+                    <button class="join-btn" onclick="joinSession('showcase')">Join Session</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Courses</h3>
+                    <ul>
+                        <li><a href="#leonardo">Leonardo AI Course</a></li>
+                        <li><a href="#suno">Suno AI Course</a></li>
+                        <li><a href="#bundle">Complete Bundle</a></li>
+                        <li><a href="#advanced">Advanced Workshops</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Learning</h3>
+                    <ul>
+                        <li><a href="#tutorials">Interactive Tutorials</a></li>
+                        <li><a href="#practice">Practice Playground</a></li>
+                        <li><a href="#resources">Resource Library</a></li>
+                        <li><a href="#templates">Prompt Templates</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Community</h3>
+                    <ul>
+                        <li><a href="#forum">Discussion Forum</a></li>
+                        <li><a href="#showcase">Student Showcase</a></li>
+                        <li><a href="#live">Live Sessions</a></li>
+                        <li><a href="#support">Get Help</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                        <li><a href="#technical">Technical Support</a></li>
+                        <li><a href="#feedback">Send Feedback</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div style="border-top: 1px solid #34495e; padding-top: 2rem; margin-top: 2rem;">
+                <p>&copy; 2025 AI Creative Academy. Empowering creativity through AI education.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Course Explorer Modal functionality
+        function showCourseExplorer() {
+            const modal = document.createElement('div');
+            modal.className = 'course-explorer-modal';
+            modal.style.display = 'block';
+            modal.innerHTML = `
+                <div class="modal-overlay" onclick="closeCourseExplorer()">
+                    <div class="modal-content" onclick="event.stopPropagation()">
+                        <div class="modal-header">
+                            <h2>Explore Our Courses</h2>
+                            <button class="close-btn" onclick="closeCourseExplorer()">&times;</button>
+                        </div>
+                        
+                        <div class="course-explorer-tabs">
+                            <button class="tab-btn active" onclick="showTab('catalog')">Course Catalog</button>
+                            <button class="tab-btn" onclick="showTab('comparison')">Compare Courses</button>
+                            <button class="tab-btn" onclick="showTab('assessment')">Find My Course</button>
+                        </div>
+                        
+                        <div class="tab-content">
+                            <!-- Course Catalog Tab -->
+                            <div id="catalog-tab" class="tab-panel active">
+                                <div class="detailed-courses">
+                                    <div class="detailed-course-card">
+                                        <div class="course-badge">Most Popular</div>
+                                        <div class="course-header-detailed">
+                                            <div class="course-icon-large leonardo-icon">🎨</div>
+                                            <div class="course-title-section">
+                                                <h3>Leonardo AI Mastery</h3>
+                                                <p>Create stunning AI-generated images and artwork</p>
+                                                <div class="course-meta">
+                                                    <span class="duration">⏱️ 8 weeks</span>
+                                                    <span class="level">📊 Beginner</span>
+                                                    <span class="students">👥 2,847 students</span>
+                                                </div>
+                                            </div>
+                                            <div class="course-price">
+                                                <span class="price">₹4,999</span>
+                                                <span class="original-price">₹7,499</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="course-curriculum">
+                                            <h4>What You'll Learn:</h4>
+                                            <div class="curriculum-grid">
+                                                <div class="module">
+                                                    <h5>Module 1: Getting Started</h5>
+                                                    <ul>
+                                                        <li>Leonardo AI interface walkthrough</li>
+                                                        <li>Basic prompt writing</li>
+                                                        <li>Understanding AI models</li>
+                                                    </ul>
+                                                </div>
+                                                <div class="module">
+                                                    <h5>Module 2: Advanced Techniques</h5>
+                                                    <ul>
+                                                        <li>Style transfer mastery</li>
+                                                        <li>Composition principles</li>
+                                                        <li>Professional workflows</li>
+                                                    </ul>
+                                                </div>
+                                                <div class="module">
+                                                    <h5>Module 3: Portfolio Building</h5>
+                                                    <ul>
+                                                        <li>Creating consistent artwork</li>
+                                                        <li>Commercial licensing</li>
+                                                        <li>Showcase strategies</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="course-features-detailed">
+                                            <div class="feature">✅ 40+ HD video lessons</div>
+                                            <div class="feature">✅ Downloadable resources</div>
+                                            <div class="feature">✅ Live Q&A sessions</div>
+                                            <div class="feature">✅ Private Discord community</div>
+                                            <div class="feature">✅ Certificate of completion</div>
+                                            <div class="feature">✅ Lifetime access</div>
+                                        </div>
+                                        
+                                        <button class="enroll-btn" onclick="enrollCourse('leonardo')">Enroll Now</button>
+                                    </div>
+                                    
+                                    <div class="detailed-course-card">
+                                        <div class="course-header-detailed">
+                                            <div class="course-icon-large suno-icon">🎵</div>
+                                            <div class="course-title-section">
+                                                <h3>Suno AI Music Creation</h3>
+                                                <p>Compose original songs and music tracks with AI</p>
+                                                <div class="course-meta">
+                                                    <span class="duration">⏱️ 6 weeks</span>
+                                                    <span class="level">📊 Beginner</span>
+                                                    <span class="students">👥 1,523 students</span>
+                                                </div>
+                                            </div>
+                                            <div class="course-price">
+                                                <span class="price">₹3,999</span>
+                                                <span class="original-price">₹5,999</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="course-curriculum">
+                                            <h4>What You'll Learn:</h4>
+                                            <div class="curriculum-grid">
+                                                <div class="module">
+                                                    <h5>Module 1: Music Fundamentals</h5>
+                                                    <ul>
+                                                        <li>Suno AI platform overview</li>
+                                                        <li>Music theory basics</li>
+                                                        <li>Genre exploration</li>
+                                                    </ul>
+                                                </div>
+                                                <div class="module">
+                                                    <h5>Module 2: Song Creation</h5>
+                                                    <ul>
+                                                        <li>Lyric writing techniques</li>
+                                                        <li>Melody and harmony</li>
+                                                        <li>Audio refinement</li>
+                                                    </ul>
+                                                </div>
+                                                <div class="module">
+                                                    <h5>Module 3: Professional Output</h5>
+                                                    <ul>
+                                                        <li>Mixing and mastering</li>
+                                                        <li>Publishing your music</li>
+                                                        <li>Monetization strategies</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="course-features-detailed">
+                                            <div class="feature">✅ 35+ video tutorials</div>
+                                            <div class="feature">✅ Sample tracks library</div>
+                                            <div class="feature">✅ Weekly live sessions</div>
+                                            <div class="feature">✅ Music collaboration tools</div>
+                                            <div class="feature">✅ Industry mentor access</div>
+                                            <div class="feature">✅ Portfolio review</div>
+                                        </div>
+                                        
+                                        <button class="enroll-btn" onclick="enrollCourse('suno')">Enroll Now</button>
+                                    </div>
+                                    
+                                    <div class="detailed-course-card bundle-card">
+                                        <div class="course-badge best-value">Best Value</div>
+                                        <div class="course-header-detailed">
+                                            <div class="course-icon-large bundle-icon">🎯</div>
+                                            <div class="course-title-section">
+                                                <h3>Complete Creative Bundle</h3>
+                                                <p>Master both Leonardo AI and Suno AI together</p>
+                                                <div class="course-meta">
+                                                    <span class="duration">⏱️ 12 weeks</span>
+                                                    <span class="level">📊 Beginner to Advanced</span>
+                                                    <span class="students">👥 956 students</span>
+                                                </div>
+                                            </div>
+                                            <div class="course-price">
+                                                <span class="price">₹6,999</span>
+                                                <span class="original-price">₹13,498</span>
+                                                <span class="savings">Save ₹6,499!</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="bundle-benefits">
+                                            <h4>Everything in Both Courses Plus:</h4>
+                                            <div class="benefit-grid">
+                                                <div class="benefit">🎨 Leonardo AI Complete Course</div>
+                                                <div class="benefit">🎵 Suno AI Complete Course</div>
+                                                <div class="benefit">🚀 Exclusive bonus workshops</div>
+                                                <div class="benefit">💼 Business & monetization guide</div>
+                                                <div class="benefit">🤝 Priority instructor support</div>
+                                                <div class="benefit">📈 Advanced project reviews</div>
+                                            </div>
+                                        </div>
+                                        
+                                        <button class="enroll-btn bundle-btn" onclick="enrollCourse('bundle')">Get Complete Bundle</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Course Comparison Tab -->
+                            <div id="comparison-tab" class="tab-panel">
+                                <div class="comparison-table">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Features</th>
+                                                <th>Leonardo AI</th>
+                                                <th>Suno AI</th>
+                                                <th>Complete Bundle</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Course Duration</td>
+                                                <td>8 weeks</td>
+                                                <td>6 weeks</td>
+                                                <td>12 weeks</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Video Lessons</td>
+                                                <td>40+ lessons</td>
+                                                <td>35+ lessons</td>
+                                                <td>75+ lessons</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Live Sessions</td>
+                                                <td>Weekly</td>
+                                                <td>Weekly</td>
+                                                <td>Bi-weekly + Exclusive</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Community Access</td>
+                                                <td>✅</td>
+                                                <td>✅</td>
+                                                <td>✅ VIP Access</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Certificate</td>
+                                                <td>✅</td>
+                                                <td>✅</td>
+                                                <td>✅ Dual Certification</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Business Guide</td>
+                                                <td>❌</td>
+                                                <td>❌</td>
+                                                <td>✅</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Price</td>
+                                                <td>₹4,999</td>
+                                                <td>₹3,999</td>
+                                                <td>₹6,999</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            
+                            <!-- Course Assessment Tab -->
+                            <div id="assessment-tab" class="tab-panel">
+                                <div class="assessment-container">
+                                    <h3>Find Your Perfect Course</h3>
+                                    <p>Answer a few questions to get personalized course recommendations</p>
+                                    
+                                    <div class="quiz-container">
+                                        <div class="question active" data-question="1">
+                                            <h4>What type of content interests you most?</h4>
+                                            <div class="options">
+                                                <label><input type="radio" name="interest" value="visual"> Visual art and images</label>
+                                                <label><input type="radio" name="interest" value="music"> Music and audio</label>
+                                                <label><input type="radio" name="interest" value="both"> Both visual and audio content</label>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="question" data-question="2">
+                                            <h4>What's your experience level with AI tools?</h4>
+                                            <div class="options">
+                                                <label><input type="radio" name="experience" value="none"> Complete beginner</label>
+                                                <label><input type="radio" name="experience" value="some"> Some experience</label>
+                                                <label><input type="radio" name="experience" value="advanced"> Advanced user</label>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="question" data-question="3">
+                                            <h4>What's your main goal?</h4>
+                                            <div class="options">
+                                                <label><input type="radio" name="goal" value="hobby"> Personal hobby/fun</label>
+                                                <label><input type="radio" name="goal" value="freelance"> Freelancing/side income</label>
+                                                <label><input type="radio" name="goal" value="business"> Start a creative business</label>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="question" data-question="4">
+                                            <h4>How much time can you dedicate weekly?</h4>
+                                            <div class="options">
+                                                <label><input type="radio" name="time" value="2-4"> 2-4 hours</label>
+                                                <label><input type="radio" name="time" value="5-8"> 5-8 hours</label>
+                                                <label><input type="radio" name="time" value="9+"> 9+ hours</label>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="quiz-navigation">
+                                            <button class="prev-btn" onclick="prevQuestion()" style="display: none;">Previous</button>
+                                            <button class="next-btn" onclick="nextQuestion()">Next</button>
+                                            <button class="results-btn" onclick="showResults()" style="display: none;">Get My Recommendation</button>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="quiz-results">
+                                        <h3>Your Recommended Course:</h3>
+                                        <div id="recommendation-result"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCourseExplorer() {
+            const modal = document.querySelector('.course-explorer-modal');
+            if (modal) {
+                modal.remove();
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-panel').forEach(panel => {
+                panel.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName + '-tab').classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Quiz functionality
+        let currentQuestion = 1;
+        const totalQuestions = 4;
+
+        function nextQuestion() {
+            if (currentQuestion < totalQuestions) {
+                document.querySelector(`[data-question="${currentQuestion}"]`).classList.remove('active');
+                currentQuestion++;
+                document.querySelector(`[data-question="${currentQuestion}"]`).classList.add('active');
+                
+                document.querySelector('.prev-btn').style.display = 'inline-block';
+                
+                if (currentQuestion === totalQuestions) {
+                    document.querySelector('.next-btn').style.display = 'none';
+                    document.querySelector('.results-btn').style.display = 'inline-block';
+                }
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQuestion > 1) {
+                document.querySelector(`[data-question="${currentQuestion}"]`).classList.remove('active');
+                currentQuestion--;
+                document.querySelector(`[data-question="${currentQuestion}"]`).classList.add('active');
+                
+                if (currentQuestion === 1) {
+                    document.querySelector('.prev-btn').style.display = 'none';
+                }
+                
+                document.querySelector('.next-btn').style.display = 'inline-block';
+                document.querySelector('.results-btn').style.display = 'none';
+            }
+        }
+
+        function showResults() {
+            const interest = document.querySelector('input[name="interest"]:checked')?.value;
+            const experience = document.querySelector('input[name="experience"]:checked')?.value;
+            const goal = document.querySelector('input[name="goal"]:checked')?.value;
+            const time = document.querySelector('input[name="time"]:checked')?.value;
+            
+            let recommendation = '';
+            
+            if (interest === 'both' || goal === 'business') {
+                recommendation = `
+                    <div class="recommendation-card bundle-rec">
+                        <h4>🎯 Complete Creative Bundle</h4>
+                        <p>Perfect for you! Based on your answers, you'll benefit from learning both Leonardo AI and Suno AI.</p>
+                        <ul>
+                            <li>✅ Covers both visual and audio creation</li>
+                            <li>✅ Best value for comprehensive learning</li>
+                            <li>✅ Includes business monetization guide</li>
+                        </ul>
+                        <button class="enroll-btn" onclick="enrollCourse('bundle')">Enroll in Bundle - ₹6,999</button>
+                    </div>
+                `;
+            } else if (interest === 'visual') {
+                recommendation = `
+                    <div class="recommendation-card leonardo-rec">
+                        <h4>🎨 Leonardo AI Mastery</h4>
+                        <p>Great choice for visual creators! You'll love creating stunning AI-generated artwork.</p>
+                        <ul>
+                            <li>✅ Perfect for visual art creation</li>
+                            <li>✅ Comprehensive image generation training</li>
+                            <li>✅ Portfolio building included</li>
+                        </ul>
+                        <button class="enroll-btn" onclick="enrollCourse('leonardo')">Enroll in Leonardo AI - ₹4,999</button>
+                    </div>
+                `;
+            } else if (interest === 'music') {
+                recommendation = `
+                    <div class="recommendation-card suno-rec">
+                        <h4>🎵 Suno AI Music Creation</h4>
+                        <p>Perfect for music lovers! Create amazing songs and compositions with AI.</p>
+                        <ul>
+                            <li>✅ Complete music creation training</li>
+                            <li>✅ Lyric writing and composition</li>
+                            <li>✅ Publishing and monetization tips</li>
+                        </ul>
+                        <button class="enroll-btn" onclick="enrollCourse('suno')">Enroll in Suno AI - ₹3,999</button>
+                    </div>
+                `;
+            }
+            
+            document.getElementById('recommendation-result').innerHTML = recommendation;
+            document.querySelector('.quiz-container').style.display = 'none';
+            document.querySelector('.quiz-results').style.display = 'block';
+        }
+
+        function enrollCourse(courseType) {
+            alert(`Enrolling in ${courseType} course! Redirecting to payment...`);
+            closeCourseExplorer();
+        }
+
+        // Course enrollment
+        function startCourse(courseType) {
+            alert(`Starting ${courseType} course! Redirecting to enrollment...`);
+        }
+
+        // Live session joining
+        function joinSession(sessionId) {
+            alert(`Joining ${sessionId} session! Opening live classroom...`);
+        }
+
+        // Demo modal
+        function showDemo() {
+            window.open('https://www.youtube.com/watch?v=PVkY8LPGfcY', '_blank');
+        }
+
+        // Signup modal
+        function showSignup() {
+            alert('Sign up form would open here!');
+        }
+
+        // Add smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+
+        // Add intersection observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all course cards and feature cards
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.course-card, .feature-card, .session-item');
+            animatedElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>Course('leonardo')">Start Leonardo Course</button>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-header">
+                        <div class="course-icon suno-icon">🎵</div>
+                        <div>
+                            <h3 class="course-title">Suno AI Music</h3>
+                            <p class="course-subtitle">Compose original songs & tracks</p>
+                        </div>
+                    </div>
+                    
+                    <ul class="course-features">
+                        <li>Music composition basics</li>
+                        <li>Genre exploration & styles</li>
+                        <li>Lyric writing integration</li>
+                        <li>Audio editing & refinement</li>
+                        <li>Publishing your creations</li>
+                    </ul>
+                    
+                    <button class="cta-btn" onclick="start
